@@ -1,10 +1,35 @@
 # CSC2031-Coursework-Task-3-
 Creating a Flask application that demonstrates secure database interaction using SQLAlchemy ORM and parameterized queries
 
+Added some styling to practice fronted.
+Added some basic scripting for a pop-up to the whole project, 50/50 chance to keep it random. 
+Added logging to the project. 
+
+Tried to implement clean coding practices from, Clean code by Robert Cecil Martin
+
+------------------------------------------------------------
+
+running the app:
+
+
+
+install the requirements.txt file
+navigate to task-3 
+reset the database then run the app.py file
+
+python reset_db.py
+python run.py
+
+
+
+
+
+
+
  ------------------------------------------------------------
-dash board logic with switch statement, requires python 3.10, lamda function workaround in coursework to allow
+Dash-board logic with switch statement, requires python 3.10, lamda function workaround in coursework to allow
 python version 3.9
- ------------------------------------------------------------
+------------------------------------------------------------
 
     @main.route('/dashboard', methods=['GET', 'POST'])
     def dashboard():

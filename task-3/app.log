@@ -177,3 +177,77 @@
             JOIN users ON users.id = posts.author_id
             WHERE posts.title LIKE :term OR posts.content LIKE :term
          params={'term': '%people%'}
+2025-11-13 02:59:18,770 WARNING: Failed login | ip=127.0.0.1 username=user
+2025-11-13 02:59:26,402 WARNING: Failed login | ip=127.0.0.1 username=user
+2025-11-13 02:59:55,423 INFO: Login success | ip=127.0.0.1 user_id=1 role=admin
+2025-11-13 03:00:11,387 WARNING: Failed login | ip=127.0.0.1 username=mod
+2025-11-13 03:00:28,676 INFO: Login success | ip=127.0.0.1 user_id=2 role=moderator
+2025-11-13 03:00:32,311 INFO: Search executed | ip=127.0.0.1 user_id=2 role=moderator sql=
+            SELECT posts.id, posts.title, posts.content, users.username AS author
+            FROM posts
+            JOIN users ON users.id = posts.author_id
+            WHERE posts.title LIKE :term OR posts.content LIKE :term
+         params={'term': '%h%'}
+2025-11-13 03:00:45,250 INFO: Search executed | ip=127.0.0.1 user_id=2 role=moderator sql=
+            SELECT posts.id, posts.title, posts.content, users.username AS author
+            FROM posts
+            JOIN users ON users.id = posts.author_id
+            WHERE posts.title LIKE :term OR posts.content LIKE :term
+         params={'term': '%users%'}
+2025-11-13 03:00:56,492 INFO: Login success | ip=127.0.0.1 user_id=3 role=user
+2025-11-13 03:01:03,647 INFO: Search executed | ip=127.0.0.1 user_id=3 role=user sql=
+            SELECT posts.id, posts.title, posts.content, users.username AS author
+            FROM posts
+            JOIN users ON users.id = posts.author_id
+            WHERE posts.title LIKE :term OR posts.content LIKE :term
+         params={'term': '%mod%'}
+2025-11-13 03:01:09,976 INFO: Search executed | ip=127.0.0.1 user_id=3 role=user sql=
+            SELECT posts.id, posts.title, posts.content, users.username AS author
+            FROM posts
+            JOIN users ON users.id = posts.author_id
+            WHERE posts.title LIKE :term OR posts.content LIKE :term
+         params={'term': '%admin%'}
+2025-11-13 03:01:15,128 INFO: Search executed | ip=127.0.0.1 user_id=3 role=user sql=
+            SELECT posts.id, posts.title, posts.content, users.username AS author
+            FROM posts
+            JOIN users ON users.id = posts.author_id
+            WHERE posts.title LIKE :term OR posts.content LIKE :term
+         params={'term': '%--%'}
+2025-11-13 03:01:20,590 INFO: Search executed | ip=127.0.0.1 user_id=3 role=user sql=
+            SELECT posts.id, posts.title, posts.content, users.username AS author
+            FROM posts
+            JOIN users ON users.id = posts.author_id
+            WHERE posts.title LIKE :term OR posts.content LIKE :term
+         params={'term': '%admin%'}
+2025-11-13 03:01:22,753 INFO: Search executed | ip=127.0.0.1 user_id=3 role=user sql=
+            SELECT posts.id, posts.title, posts.content, users.username AS author
+            FROM posts
+            JOIN users ON users.id = posts.author_id
+            WHERE posts.title LIKE :term OR posts.content LIKE :term
+         params={'term': '%mod%'}
+2025-11-13 03:04:24,348 INFO: Search executed | ip=127.0.0.1 user_id=3 role=user sql=
+                   SELECT posts.id,
+                          posts.title,
+                          posts.content,
+                          users.username AS author
+                   FROM posts
+                            JOIN users ON users.id = posts.author_id
+                   WHERE (posts.title LIKE :term OR posts.content LIKE :term)                     AND users.id = :uid params={'term': '%mod%', 'uid': 3}
+2025-11-13 03:04:28,016 INFO: Search executed | ip=127.0.0.1 user_id=3 role=user sql=
+                   SELECT posts.id,
+                          posts.title,
+                          posts.content,
+                          users.username AS author
+                   FROM posts
+                            JOIN users ON users.id = posts.author_id
+                   WHERE (posts.title LIKE :term OR posts.content LIKE :term)                     AND users.id = :uid params={'term': '%user%', 'uid': 3}
+2025-11-13 03:04:32,863 INFO: Search executed | ip=127.0.0.1 user_id=3 role=user sql=
+                   SELECT posts.id,
+                          posts.title,
+                          posts.content,
+                          users.username AS author
+                   FROM posts
+                            JOIN users ON users.id = posts.author_id
+                   WHERE (posts.title LIKE :term OR posts.content LIKE :term)                     AND users.id = :uid params={'term': '%user2%', 'uid': 3}
+2025-11-13 03:04:44,920 INFO: Login success | ip=127.0.0.1 user_id=1 role=admin
+2025-11-13 03:04:58,966 INFO: Login success | ip=127.0.0.1 user_id=2 role=moderator

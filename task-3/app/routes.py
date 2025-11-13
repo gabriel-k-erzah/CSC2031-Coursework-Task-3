@@ -97,18 +97,29 @@ def dashboard():
 
     # ----- SECURE RAW SQL SEARCH (BOUND PARAMS) -----
     results = None
-    if request.method == 'POST' and request.form.get('search'):
-        term = request.form.get('search', '').strip()
+    if request.method == "POST" and request.form.get("search"):
+        term = request.form.get("search", "").strip()
 
-        q = text("""
-            SELECT posts.id, posts.title, posts.content, users.username AS author
-            FROM posts
-            JOIN users ON users.id = posts.author_id
-            WHERE posts.title LIKE :term OR posts.content LIKE :term
-        """)
+        base_sql = """
+                   SELECT posts.id,
+                          posts.title,
+                          posts.content,
+                          users.username AS author
+                   FROM posts
+                            JOIN users ON users.id = posts.author_id
+                   WHERE (posts.title LIKE :term OR posts.content LIKE :term) \
+                   """
 
         params = {"term": f"%{term}%"}
 
+        # extra restriction for normal users
+        if role == "user":
+            base_sql += " AND users.id = :uid"
+            params["uid"] = user_id
+
+        # (optional) if you ever want to restrict mods differently, do it here too
+
+        q = text(base_sql)
         results = db.session.execute(q, params).mappings().all()
 
         current_app.logger.info(
