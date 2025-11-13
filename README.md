@@ -11,8 +11,6 @@ Tried to implement clean coding practices from, Clean code by Robert Cecil Marti
 
 running the app:
 
-
-
 install the requirements.txt file
 navigate to task-3 
 reset the database then run the app.py file
@@ -21,14 +19,9 @@ python reset_db.py
 python run.py
 
 
-
-
-
-
-
  ------------------------------------------------------------
 Dash-board logic with switch statement, requires python 3.10, lamda function workaround in coursework to allow
-python version 3.9
+python version 3.9, AI generation used in front end. 
 ------------------------------------------------------------
 
     @main.route('/dashboard', methods=['GET', 'POST'])
