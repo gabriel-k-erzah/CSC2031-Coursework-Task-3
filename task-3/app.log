@@ -251,3 +251,4 @@
                    WHERE (posts.title LIKE :term OR posts.content LIKE :term)                     AND users.id = :uid params={'term': '%user2%', 'uid': 3}
 2025-11-13 03:04:44,920 INFO: Login success | ip=127.0.0.1 user_id=1 role=admin
 2025-11-13 03:04:58,966 INFO: Login success | ip=127.0.0.1 user_id=2 role=moderator
+2025-11-13 03:17:18,756 INFO: Login success | ip=127.0.0.1 user_id=1 role=admin
