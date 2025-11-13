@@ -1,44 +1,71 @@
-<!-- app/templates/dashboard.html -->
 {% extends "base.html" %}
-{% block title %}Dashboard{% endblock %}
-
 {% block content %}
-  <h2>Dashboard</h2>
 
-  <!-- Search -->
-  <form method="POST" novalidate style="margin-bottom:1rem;">
-    <input type="text" name="search" placeholder="Search posts…" />
-    <button type="submit">Search</button>
-  </form>
+<h2>Dashboard</h2>
 
-  <!-- Posts (role-based) -->
-  <h3>Posts</h3>
-  <ul>
-    {% if mode in ["admin_full", "user_own"] %}
-      {% for p in posts %}
-        <li>
-          <strong>{{ p.title }}</strong> by {{ p.author }} — #{{ p.id }}<br>
-          <em>{{ p.content }}</em>
-        </li>
-      {% endfor %}
-    {% elif mode == "mod_limited" %}
-      {% for p in posts %}
-        <li><strong>{{ p.title }}</strong> by {{ p.author }} — #{{ p.id }}</li>
-      {% endfor %}
-    {% endif %}
-  </ul>
+<p style="color:#22c55e;">Role: <strong>{{ session['role'] }}</strong></p>
 
-  <!-- Search results -->
-  {% if results is not none %}
-    <h3>Search Results</h3>
-    {% if results|length == 0 %}<p>No matches.</p>{% endif %}
-    <ul>
-      {% for r in results %}
-        <li>
-          <strong>{{ r.title }}</strong> by {{ r.author }} — #{{ r.id }}<br>
-          <em>{{ r.content }}</em>
-        </li>
-      {% endfor %}
-    </ul>
-  {% endif %}
+<hr style="border-color:#22c55e; margin: 1rem 0;">
+
+
+<div class="dash-top">
+    <span>Role: <strong>{{ session['role'] }}</strong></span>
+    <a class="logout-btn" href="{{ url_for('main.logout') }}">Logout</a>
+</div>
+
+<h3>Posts</h3>
+
+{% if posts %}
+<div class="post-list">
+    {% for p in posts %}
+        <div class="post-card">
+            <div class="post-header">
+                <span class="post-title">{{ p.title }}</span>
+                <span class="post-author">by {{ p.author }}</span>
+            </div>
+
+            {% if mode != 'mod_limited' %}
+                <p class="post-content">{{ p.content }}</p>
+            {% endif %}
+
+            <div class="post-footer">
+                <span class="post-id">#{{ p.id }}</span>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% else %}
+    <p style="color:#94ff94;">No posts available.</p>
+{% endif %}
+
+<hr style="border-color:#22c55e; margin: 1rem 0;">
+
+<h3>Search Posts</h3>
+<form method="POST">
+    <input type="search" name="search" placeholder="Search keyword…" style="width: 60%;">
+    <input type="submit" value="Search">
+</form>
+
+{% if results %}
+    <h3 style="margin-top:1.5rem;">Search Results</h3>
+
+    <div class="post-list">
+        {% for r in results %}
+            <div class="post-card">
+                <div class="post-header">
+                    <span class="post-title">{{ r.title }}</span>
+                    <span class="post-author">by {{ r.author }}</span>
+                </div>
+
+                <p class="post-content">{{ r.content }}</p>
+
+                <div class="post-footer">
+                    <span class="post-id">#{{ r.id }}</span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endif %}
+
 {% endblock %}
