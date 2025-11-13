@@ -1,16 +1,44 @@
-{% extends 'base.html' %}
+<!-- app/templates/dashboard.html -->
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
 {% block content %}
-<h2>Dashboard</h2>
-<p>Welcome to your dashboard.</p>
+  <h2>Dashboard</h2>
 
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <ul>
-        {% for message in messages %}
-            <li style="color: green;">{{ message }}</li>
-        {% endfor %}
-        </ul>
+  <!-- Search -->
+  <form method="POST" novalidate style="margin-bottom:1rem;">
+    <input type="text" name="search" placeholder="Search posts…" />
+    <button type="submit">Search</button>
+  </form>
+
+  <!-- Posts (role-based) -->
+  <h3>Posts</h3>
+  <ul>
+    {% if mode in ["admin_full", "user_own"] %}
+      {% for p in posts %}
+        <li>
+          <strong>{{ p.title }}</strong> by {{ p.author }} — #{{ p.id }}<br>
+          <em>{{ p.content }}</em>
+        </li>
+      {% endfor %}
+    {% elif mode == "mod_limited" %}
+      {% for p in posts %}
+        <li><strong>{{ p.title }}</strong> by {{ p.author }} — #{{ p.id }}</li>
+      {% endfor %}
     {% endif %}
-{% endwith %}
+  </ul>
 
+  <!-- Search results -->
+  {% if results is not none %}
+    <h3>Search Results</h3>
+    {% if results|length == 0 %}<p>No matches.</p>{% endif %}
+    <ul>
+      {% for r in results %}
+        <li>
+          <strong>{{ r.title }}</strong> by {{ r.author }} — #{{ r.id }}<br>
+          <em>{{ r.content }}</em>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
 {% endblock %}
